@@ -1,6 +1,6 @@
 {
     "name": "jybtx/binanceapi",
-    "description": "Binance API Class and examples of how to use the API for laravel",
+    "description": "Binance API Class and how to use the API for laravel",
     "license": "MIT",
     "authors": [
         {

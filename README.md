@@ -1,12 +1,12 @@
 <h1 align="center"> binanceapi </h1>
 
-<p align="center"> Binance API Class and examples of how to use the API. for laravel.</p>
+<p align="center"> Binance API Class and how to use the API for laravel.</p>
 
 
 ## Installing
 
 ```shell
-$ composer require jybtx/binanceapi -vvv
+$ composer require jybtx/binanceapi
 ```
 
 ## Usage
