@@ -3,13 +3,12 @@
 namespace Jybtx\BinanceApi;
 
 use Illuminate\Support\ServiceProvider;
-use Jybtx\BinanceApi\OneSignalClient;
+use Jybtx\BinanceApi\BinanceApiClient;
 
 
 class BinanceServiceProvider extends ServiceProvider
 {
 	
-	function __construct(argument)
 	/**
      * Bootstrap any application services.
      *
@@ -51,7 +50,7 @@ class BinanceServiceProvider extends ServiceProvider
             if ( is_null( $config ) ) {
                 $config = $app['config']['binance'] ?: $app['config']['binance::config'];
             }
-            return new OneSignalClient($config['auth']['key'], $config['auth']['secret'],$config['urls']['api']);
+            return new BinanceApiClient($config['auth']['key'], $config['auth']['secret'],$config['urls']['api']);
         });
     }
     /**
