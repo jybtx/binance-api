@@ -1,0 +1,30 @@
+{
+    "name": "jybtx/binanceapi",
+    "description": "Binance API Class and examples of how to use the API for laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jybtx",
+            "email": "2574034626@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jybtx\\BinanceApi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jybtx\\BinanceApi\\BinanceServiceProvider"
+            ],
+            "aliases": {
+                "Binance": "Jybtx\\BinanceApi\\BinanceAPIFacade"
+            }
+        }
+    }
+}
