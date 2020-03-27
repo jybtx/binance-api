@@ -17,6 +17,7 @@
             "Jybtx\\BinanceApi\\": "src/"
         }
     },
+    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
