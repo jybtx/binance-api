@@ -24,7 +24,7 @@ class BinanceServiceProvider extends ServiceProvider
     private function configurePaths()
     {
         $this->publishes([
-            __DIR__."/../config/binance.php" => config_path('binance.php'),
+            __DIR__."/../../config/binance.php" => config_path('binance.php'),
         ],'binance');
     }
     /**
@@ -33,7 +33,7 @@ class BinanceServiceProvider extends ServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/binance.php', 'binance'
+            __DIR__.'/../../config/binance.php', 'binance'
         );
     }
     /**
