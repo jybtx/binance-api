@@ -15,6 +15,7 @@ class BinanceApiClient
         $this->secret = $secret;
         $this->key    = $key;
         $this->base   = $base;
+
     }
 
     /**
@@ -73,7 +74,7 @@ class BinanceApiClient
     }
 
     /**
-     * [openOrders description]
+     * [当前挂单 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
@@ -85,20 +86,20 @@ class BinanceApiClient
     }
 
     /**
-     * [orders description]
+     * [查询所有订单 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
      * @param  integer    $limit  [description]
      * @return [type]             [description]
      */
-    public function orders($symbol, $limit = 500)
+    public function allOrders($symbol, $limit = 500)
     {
         return $this->signedRequest("v3/allOrders", ["symbol" => $symbol, "limit" => $limit]);
     }
 
     /**
-     * [trades description]
+     * [账户成交历史 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
@@ -111,7 +112,7 @@ class BinanceApiClient
 
     public function prices()
     {
-        return $this->priceData($this->request("v1/ticker/allPrices"));
+        return $this->priceData($this->request("v3/ticker/price"));
     }
 
     /**
@@ -122,11 +123,11 @@ class BinanceApiClient
      */
     public function bookPrices()
     {
-        return $this->bookPriceData($this->request("v1/ticker/allBookTickers"));
+        return $this->bookPriceData($this->request("v3/ticker/bookTicker"));
     }
 
     /**
-     * [account description]
+     * [账户信息 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @return [type]     [description]
@@ -137,19 +138,7 @@ class BinanceApiClient
     }
 
     /**
-     * [depth description]
-     * @author jybtx
-     * @date   2020-03-28
-     * @param  [type]     $symbol [description]
-     * @return [type]             [description]
-     */
-    public function depth($symbol)
-    {
-        return $this->request("v1/depth", ["symbol" => $symbol]);
-    }
-
-    /**
-     * [balances description]
+     * [账户信息 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  boolean    $priceData [description]
@@ -176,7 +165,7 @@ class BinanceApiClient
     {
         $headers[] = "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n";
         $query = http_build_query($params, '', '&');
-        return json_decode($this->http_request($this->base . $url . '?' . $query, $headers), true);
+        return $this->http_request($this->base . $url . '?' . $query, $headers);
     }
 
     /**
@@ -208,7 +197,7 @@ class BinanceApiClient
             $content = false;
         }
         curl_close($ch);
-        return $content;
+        return json_decode($content,true);
     }
 
     /**
@@ -226,11 +215,11 @@ class BinanceApiClient
         $query = http_build_query($params, '', '&');
         $signature = hash_hmac('sha256', $query, $this->secret);
         $endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
-        return json_decode($this->http_request($endpoint, $headers), true);
+        return $this->http_request($endpoint, $headers);
     }
 
     /**
-     * [order description]
+     * [下单 (TRADE)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $side     [description]
