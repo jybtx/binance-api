@@ -165,7 +165,7 @@ class BinanceApiClient
     {
         $headers[] = "User-Agent: Mozilla/4.0 (compatible; PHP Binance API)\r\n";
         $query = http_build_query($params, '', '&');
-        return json_decode($this->http_request($this->base . $url . '?' . $query, $headers), true);
+        return $this->http_request($this->base . $url . '?' . $query, $headers);
     }
 
     /**
@@ -197,7 +197,7 @@ class BinanceApiClient
             $content = false;
         }
         curl_close($ch);
-        return $content;
+        return json_decode($content,true);
     }
 
     /**
@@ -215,7 +215,7 @@ class BinanceApiClient
         $query = http_build_query($params, '', '&');
         $signature = hash_hmac('sha256', $query, $this->secret);
         $endpoint = "{$this->base}{$url}?{$query}&signature={$signature}";
-        return json_decode($this->http_request($endpoint, $headers), true);
+        return $this->http_request($endpoint, $headers);
     }
 
     /**
