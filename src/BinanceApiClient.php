@@ -12,9 +12,14 @@ class BinanceApiClient
 
     public  function __construct($key,$secret,$base)
     {
-        $this->secret = $secret;
-        $this->key    = $key;
+        if ( empty($key) ) die("this api-key is not empty!");
+        else $this->key    = $key;
+
+        if ( empty( $secret ) ) die("this api-secret is not empty!");
+        else $this->secret = $secret; 
+        
         $this->base   = $base;
+
     }
 
     /**
