@@ -74,7 +74,7 @@ class BinanceApiClient
     }
 
     /**
-     * [openOrders description]
+     * [当前挂单 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
@@ -86,20 +86,20 @@ class BinanceApiClient
     }
 
     /**
-     * [orders description]
+     * [查询所有订单 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
      * @param  integer    $limit  [description]
      * @return [type]             [description]
      */
-    public function orders($symbol, $limit = 500)
+    public function allOrders($symbol, $limit = 500)
     {
         return $this->signedRequest("v3/allOrders", ["symbol" => $symbol, "limit" => $limit]);
     }
 
     /**
-     * [trades description]
+     * [账户成交历史 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $symbol [description]
@@ -112,7 +112,7 @@ class BinanceApiClient
 
     public function prices()
     {
-        return $this->priceData($this->request("v1/ticker/allPrices"));
+        return $this->priceData($this->request("v3/ticker/price"));
     }
 
     /**
@@ -123,11 +123,11 @@ class BinanceApiClient
      */
     public function bookPrices()
     {
-        return $this->bookPriceData($this->request("v1/ticker/allBookTickers"));
+        return $this->bookPriceData($this->request("v3/ticker/bookTicker"));
     }
 
     /**
-     * [account description]
+     * [账户信息 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @return [type]     [description]
@@ -138,19 +138,7 @@ class BinanceApiClient
     }
 
     /**
-     * [depth description]
-     * @author jybtx
-     * @date   2020-03-28
-     * @param  [type]     $symbol [description]
-     * @return [type]             [description]
-     */
-    public function depth($symbol)
-    {
-        return $this->request("v1/depth", ["symbol" => $symbol]);
-    }
-
-    /**
-     * [balances description]
+     * [账户信息 (USER_DATA)]
      * @author jybtx
      * @date   2020-03-28
      * @param  boolean    $priceData [description]
@@ -231,7 +219,7 @@ class BinanceApiClient
     }
 
     /**
-     * [order description]
+     * [下单 (TRADE)]
      * @author jybtx
      * @date   2020-03-28
      * @param  [type]     $side     [description]
