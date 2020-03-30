@@ -47,8 +47,13 @@ php artisan vendor:publish --tag=binance
 
 
 ## Usage
-use Binance;
+```php
+use Binance;  
+
 $result = Binance::bookPrices();
+
+```
+  
 
 ## Methods
 
