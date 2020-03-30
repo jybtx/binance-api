@@ -8,10 +8,68 @@
 ```shell
 $ composer require jybtx/binance-api
 ```
+### Laravel
+
+- PHP >= 7.0.0
+ - Laravel >= 5.5
+ - Fileinfo PHP Extension
+ 
+ ServiceProvider will be attached automatically
+
+ ## Configurations
+ The file config/binance.php contains an array of configurations, you can find the default configurations in there.
+
+#### Other
+
+In your `config/app.php` add `Jybtx\BinanceApi\BinanceServiceProvider::class` to the end of the `providers` array:
+
+```php
+'providers' => [
+    ...
+    Jybtx\BinanceApi\BinanceServiceProvider::class,
+],
+'aliases'  => [
+    ...
+    "Binance": Jybtx\BinanceApi\BinanceAPIFacade::class,
+]
+```
+Publish Configuration
+
+```shell
+php artisan vendor:publish --provider "Jybtx\BinanceApi\BinanceServiceProvider"
+```
+OR
+```shell
+php artisan vendor:publish --tag=binance
+```
+
+
+
 
 ## Usage
+use Binance;
+$result = Binance::bookPrices();
 
-TODO
+## Methods
+
+> 行情类API 
+
+- buy($symbol, $quantity, $price, $type = "LIMIT")
+- sell($symbol, $quantity, $price, $type = "LIMIT")
+- cancel($symbol, $orderid)
+- orderStatus($symbol, $orderid)
+- openOrders($symbol)
+- allOrders($symbol, $limit = 500)
+- trades($symbol)
+- prices()
+- bookPrices()
+- account()
+- balances($priceData = false)
+- order($side, $symbol, $quantity, $price, $type = "LIMIT")
+- candlesticks($symbol, $interval = "5m")
+
+## 参考文档
+(binance-api-php)[https://github.com/baitercel/binance-api-php]
 
 ## Contributing
 
