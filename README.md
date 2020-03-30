@@ -74,7 +74,8 @@ $result = Binance::bookPrices();
 - candlesticks($symbol, $interval = "5m")
 
 ## 参考文档
-(binance-api-php)[https://github.com/baitercel/binance-api-php]
+
+[binance-api-php](https://github.com/baitercel/binance-api-php)
 
 ## Contributing
 
